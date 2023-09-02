@@ -1,5 +1,7 @@
 import random
 
+# Determining how many hits and blows the user has achieved based on the guess
+
 def Return_Hits_Blows(go, correct_answer):
   hits = 0
   blows = 0
@@ -13,15 +15,24 @@ def Return_Hits_Blows(go, correct_answer):
   
   return hits, blows
 
+# Actual game
+
 def Game():
-  print("Welcome to Hit and Blow! (no duplicates!)")
+  print("Welcome to Hit and Blow!")
+  
+# Generate a random 4-digit number, ensuring that the number does not have a leading 0, as that is not a valid 4-digit number
+  
   digits = list(range(10))
   random.shuffle(digits)
   correct_answer = digits[:4]
+  while correct_answer[0] == 0:
+    random.shuffle(digits)
+    correct_answer = digits[:4]
+    
   attempts = 0
   
   while True:
-    
+# Check if the user-inputted go's length is not 4, then ask them to input a number that has 4 digits.
     go = int(input("Enter your go: "))
     if len(str(go)) != 4:
       print("Invalid. Enter a 4-digit number.")
@@ -36,14 +47,6 @@ def Game():
       break
     else:
       print(f"Hits: {hits} Blows: {blows}")
-
-    if attempts > 10:
-        quit_choice = input("Do you want to quit? Press y if so. ")
-        if quit_choice.lower() == "y":
-            print("This is the correct answer:", correct_answer)
-            break
-        else:
-            continue
     
 Game()
 
