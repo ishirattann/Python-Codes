@@ -14,8 +14,10 @@ def Return_Hits_Blows(go, correct_answer):
   return hits, blows
 
 def Game():
-  print("Welcome to Hit and Blow!")
-  correct_answer = random.randint(1000, 9999)
+  print("Welcome to Hit and Blow! (no duplicates!)")
+  digits = list(range(10))
+  random.shuffle(digits)
+  correct_answer = digits[:4]
   attempts = 0
   
   while True:
